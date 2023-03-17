@@ -42,6 +42,9 @@ init() {
 		esac
 	done
 	browser=$(xdg-settings get default-web-browser | cut -d "." -f1)
+
+  [[ -z $md_file ]] || [[ -z $css_file ]] || [[ -z $pdf_file ]] || \
+  [[ -z $html_file ]] && usage
 }
 
 generate() {
