@@ -11,13 +11,6 @@ EOM
     exit 0
 }
 
-check_os() {
-	if [[ -z $(dpkg -l) ]]; then
-		echo "Not supported OS"
-		exit 1
-	fi
-}
-
 browser() {
 	br=$(xdg-settings get default-web-browser | cut -d "." -f1)
 	if [[ -z $br ]]; then
@@ -48,6 +41,5 @@ while getopts "hs" flag; do
     esac
 done
 
-check_os
 [[ $silent -eq 0 ]] && browser
 requisites
