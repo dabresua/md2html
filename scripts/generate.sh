@@ -56,7 +56,7 @@ generate() {
 }
 
 review() {
-	if [ $silent -eq 0 ] && [ -f $pdf_file ] && [ -f $html_file ]; then
+	if [ -f $pdf_file ] && [ -f $html_file ]; then
 		$browser $pdf_file
 		$browser $html_file
 	fi
@@ -66,5 +66,9 @@ review() {
 
 [ $# -eq 0 ] && usage
 init $@
+echo "generating ..."
 generate
-review
+if [ $silent -eq 0 ]; then
+  echo "reviewing ..."
+  review
+fi
