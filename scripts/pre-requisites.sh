@@ -22,7 +22,9 @@ browser() {
 }
 
 requisites() {
+  echo "Installing the following packages: $packages"
 	sudo apt install -y $packages
+  echo "Packages installed"
 }
 
 # Main program
