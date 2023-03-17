@@ -42,17 +42,21 @@ init() {
 		esac
 	done
 	browser=$(xdg-settings get default-web-browser | cut -d "." -f1)
+
+  [[ -z $md_file ]] || [[ -z $css_file ]] || [[ -z $pdf_file ]] || \
+  [[ -z $html_file ]] && usage
 }
 
 generate() {
-	pandoc --standalone --from markdown --to html -c $css_file -o $html_file $md_file
+  abs_css="$(pwd)/$css_file"
+	pandoc --standalone --from markdown --to html -c $abs_css -o $html_file $md_file
 	if [[ -f $html_file ]]; then
 		wkhtmltopdf -L 20mm -R 20mm $html_file $pdf_file
 	fi
 }
 
 review() {
-	if [ $silent -eq 0 ] && [ -f $pdf_file ] && [ -f $html_file ]; then
+	if [ -f $pdf_file ] && [ -f $html_file ]; then
 		$browser $pdf_file
 		$browser $html_file
 	fi
@@ -62,5 +66,9 @@ review() {
 
 [ $# -eq 0 ] && usage
 init $@
+echo "generating ..."
 generate
-review
+if [ $silent -eq 0 ]; then
+  echo "reviewing ..."
+  review
+fi
