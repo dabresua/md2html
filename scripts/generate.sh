@@ -48,7 +48,7 @@ init() {
 }
 
 generate() {
-  abs_css="$(pwd)/$css_file"
+	abs_css="$(pwd)/$css_file"
 	pandoc --standalone --from markdown --to html -c $abs_css -o $html_file $md_file
 	if [[ -f $html_file ]]; then
 		wkhtmltopdf -L 20mm -R 20mm $html_file $pdf_file
