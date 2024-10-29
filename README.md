@@ -19,7 +19,7 @@ First, install required tools:
 Then, generate HTML and PDF from markdown and style file.
 
 ```bash
-./scripts/generate.sh -m <markdown_file.md> -c <style.css> -p <file.pdf> -h <file.html>
+./scripts/generate.sh -m <markdown_file.md> -c <style.css> -p <file.pdf> -o <file.html>
 ```
 
 ## Silent mode
@@ -28,5 +28,5 @@ To avoid visualizing the results on browser, user can enable the silent mode.
 
 ```bash
 ./scripts/pre-requisites.sh -s
-./scripts/generate.sh -s -m <markdown_file.md> -c <style.css> -p <file.pdf> -h <file.html>
+./scripts/generate.sh -s -m <markdown_file.md> -c <style.css> -p <file.pdf> -o <file.html>
 ```
